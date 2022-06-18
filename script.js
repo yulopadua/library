@@ -1,19 +1,43 @@
+//declare empty array for library
 let myLibrary = [];
 
-function Book(title, author, pages, read) {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.read = read;
-}
+//object constructor
+function Book(Title, Author, Pages, Read) {
+    this.Title = Title;
+    this.Author = Author;
+    this.Pages = Pages;
+    this.Read = Read;
+};
 
-function addBookToLibrary(title, author, pages, read) {
-    let newBook = new Book(title, author, pages, read);
-    myLibrary.push(newBook);
-}
+//fucntion for adding a new book to the array
+function addBookToLibrary(Title, Author, Pages, Read) {
+    let book = new Book(Title, Author, Pages, Read);
+    myLibrary.push(book);
+};
 
+//function to display library array to cards
 function displayEachBook() {
-    for (let i = 0; i < myLibrary.length; i++) {
-        console.log(myLibrary[i]);
-    }
-}
+   const books = document.querySelector(".books");
+
+   myLibrary.forEach(myLibrary => {
+        const card = document.createElement("div");
+        card.classList.add("card");
+        books.appendChild(card);
+
+        for (let key in myLibrary) {
+            console.log(`${key}: ${myLibrary[key]}`)
+            const para = document.createElement("p");
+            para.textContent = (`${key}: ${myLibrary[key]}`);
+            card.appendChild(para);
+        }
+   })
+};
+
+
+addBookToLibrary("Hi", "hey", 98, "read");
+addBookToLibrary("Hi", "hey", 98, "read");
+addBookToLibrary("Hi", "hey", 98, "read");
+addBookToLibrary("Hi", "hey", 98, "read");
+addBookToLibrary("Hi", "hey", 98, "read");
+
+displayEachBook();
