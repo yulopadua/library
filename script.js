@@ -28,17 +28,68 @@ function displayEachBook() {
    }
 
    //Loop over the library
-   myLibrary.forEach(myLibrary => {
+   let index = 0;
+
+   myLibrary.forEach(myLib => {
         const card = document.createElement("div");
         card.classList.add("card");
         books.appendChild(card);
 
-        for (let key in myLibrary) {
-            console.log(`${key}: ${myLibrary[key]}`)
+        //Remove book button
+        const removeBookButton = document.createElement("button");
+        removeBookButton.classList.add("remove-book-button");
+        removeBookButton.textContent = "Remove From Library";
+
+        //Link data attribute of the remove button to the array and card
+        removeBookButton.dataset.linkedArray = index;
+        card.appendChild(removeBookButton);
+
+        //Event listener to remove array item
+        removeBookButton.addEventListener("click", removeBookFromLibrary);
+
+        function removeBookFromLibrary() {
+            let retrieveBookToRemove = removeBookButton.dataset.linkedArray;
+            myLibrary.splice(parseInt(retrieveBookToRemove), 1);
+            card.remove();
+            displayEachBook();
+        }
+
+        //Create read status button and add class attribute for each array card
+        const readStatusButton = document.createElement("button");
+        readStatusButton.classList.add("read-status-button");
+        readStatusButton.textContent = "Toggle Read Status";
+
+        //Link the data attribute of the toggle read button to the array and card
+        readStatusButton.dataset.linkedArray = index;
+        card.appendChild(readStatusButton);
+
+        //Create event listener logic for array objects prototype for read status change
+        readStatusButton.addEventListener("click", toogleReadStatus);
+
+        function toogleReadStatus() {
+            let retriveBookToToggle = readStatusButton.dataset.linkedArray;
+            Book.prototype = Object.create(Book.prototype);
+            const toggleBook = new Book();
+
+            //Run check to see what read value is present to toggle form
+            if (myLibrary[parseInt(retriveBookToToggle)].Read == "Yes") {
+                toggleBook.Read = "No";
+                myLibrary[parseInt(retriveBookToToggle)].Read =  toggleBook.Read;
+            } else if (myLibrary[parseInt(retriveBookToToggle)].Read == "No") {
+                toggleBook.Read =  "Yes";
+                myLibrary[parseInt(retriveBookToToggle)].Read =  toggleBook.Read;
+            }
+            displayEachBook();
+        }
+
+        for (let key in myLib) {
+            console.log(`${key}: ${myLib[key]}`)
             const para = document.createElement("p");
-            para.textContent = (`${key}: ${myLibrary[key]}`);
+            para.textContent = (`${key}: ${myLib[key]}`);
             card.appendChild(para);
         }
+
+    index++;
    })
 };
 
