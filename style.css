@@ -1,6 +1,7 @@
-.body {
+body {
     margin: 0;
     padding: 0;
+    background-color: goldenrod;
 }
 
 .container {
@@ -12,7 +13,7 @@
 }
 
 .books {
-    background-color: blue;
+    background-color: grey;
     border-style: groove;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -29,6 +30,7 @@
 
 button {
     border-radius: 10px;
+    padding: 5px;
 }
 
 #add-book {
@@ -38,4 +40,14 @@ button {
     margin: 50px;
     align-items: center;
     justify-content: center;
+}
+
+.read-status-button {
+    grid-row: 5 / 6;
+    background-color: blue;
+}
+
+.remove-book-button {
+    grid-row: 6 / 7;
+    background-color: red;
 }
