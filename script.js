@@ -2,11 +2,21 @@
 let myLibrary = [];
 
 //object constructor
-function Book(Title, Author, Pages, Read) {
-    this.Title = Title;
-    this.Author = Author;
-    this.Pages = Pages;
-    this.Read = Read;
+// function Book(Title, Author, Pages, Read) {
+//     this.Title = Title;
+//     this.Author = Author;
+//     this.Pages = Pages;
+//     this.Read = Read;
+// };
+
+//using class syntax
+class Book {
+    constructor(Title, Author, Pages, Read) {
+        this.Title = Title;
+        this.Author = Author;
+        this.Pages = Pages;
+        this.Read = Read;
+    }
 };
 
 //function for adding a new book to the array
